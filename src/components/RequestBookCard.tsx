@@ -58,7 +58,11 @@ const RequestBookCard = ({
                 </div>
 
                 <div className="flex flex-col gap-2  items-center mt-5">
-                    <Button text="Cancel Request" variant="danger" widthFull={true} onClick={clickHandler} />
+                    {status !== "pending" ?
+                        <Button text="Mark as Completed" variant="success" widthFull={true} onClick={clickHandler} />
+                        :
+                        <Button text="Cancel Request" variant="danger" widthFull={true} onClick={clickHandler} />
+                    }
                     <Button text="Chat with Owner" variant="secondary" widthFull={true} />
 
                 </div>

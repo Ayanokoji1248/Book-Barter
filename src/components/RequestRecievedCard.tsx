@@ -55,12 +55,16 @@ const RequestRecievedCard = ({ _id, photo, title, message, requesterName, availa
                 </div>
 
                 <div className="flex flex-col gap-3">
-                    {status === "accepted" ? <Button variant="success" text="Mark as Complete" widthFull={true} /> :
-                        <div className="flex justify-between gap-2">
+                    {
+                        status === "accepted" ? (
+                            <Button variant="success" text="Mark as Complete" widthFull={true} />
+                        ) : status === "rejected" ? (
 
-                            <Button variant="success" text="Accept" widthFull={true} onClick={() => acceptRequest(_id)} />
-                            <Button variant="danger" text="Decline" widthFull={true} onClick={() => rejectRequest(_id)} />
-                        </div>
+                            <Button variant="danger" text="Rejected" widthFull={true} onClick={() => acceptRequest(_id)} />
+
+                        ) : (
+                            <Button variant="success" text="Mark as Complete" widthFull={true} />
+                        )
                     }
                     <Button text="Chat" variant="secondary" widthFull={true} />
                 </div>
