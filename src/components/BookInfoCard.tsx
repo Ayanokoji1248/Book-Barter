@@ -60,7 +60,7 @@ const BookInfoCard = ({ photo, title, author, genre, condition, availability, pr
                         <h3 className="font-medium">Genre</h3>: {genre}
                     </div>
 
-                    {price &&
+                    {price > 0 &&
                         <div className="flex">
                             {/* Optional Price only see when badge is price */}
                             <h3 className="font-medium">Price</h3>: ${price}

@@ -40,7 +40,7 @@ const RequestBookCard = ({
                     <div className="flex text-md lg:text-sm">
                         <h3 className="font-medium">Genre</h3>: {genre}
                     </div>
-                    {price &&
+                    {price > 0 &&
                         <div className="flex text-md lg:text-sm">
                             <h3 className="font-medium">Price</h3>: {price}
                         </div>
@@ -58,11 +58,14 @@ const RequestBookCard = ({
                 </div>
 
                 <div className="flex flex-col gap-2  items-center mt-5">
-                    {status !== "pending" ?
-                        <Button text="Mark as Completed" variant="success" widthFull={true} onClick={clickHandler} />
-                        :
-                        <Button text="Cancel Request" variant="danger" widthFull={true} onClick={clickHandler} />
+                    {
+                        status === "accepted"
+                            ? <Button text="Mark as Completed" variant="success" widthFull onClick={clickHandler} />
+                            : status === "rejected" || status === "pending"
+                                ? <Button text="Cancel Request" variant="danger" widthFull onClick={clickHandler} />
+                                : null
                     }
+
                     <Button text="Chat with Owner" variant="secondary" widthFull={true} />
 
                 </div>

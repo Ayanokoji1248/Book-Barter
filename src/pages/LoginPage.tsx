@@ -20,7 +20,7 @@ const LoginPage = () => {
                 email,
                 password
             })
-
+            console.log(email, password)
             const token = response.data.token;
 
             localStorage.setItem("token", token);
@@ -34,7 +34,6 @@ const LoginPage = () => {
             toast.error("Invalid Credentials")
         }
     }
-
     return (
         <div className="shadow-2xl shadow-blue-200  flex flex-col gap-6 w-full xl:w-108 p-5 py-10 rounded-md justify-between">
             <ToastContainer />

@@ -55,7 +55,7 @@ const Book = ({
             <div className="p-4 py-3 pt-2 flex flex-col gap-2">
                 <div className="flex justify-between">
                     <Badge type={availability} />
-                    {price > 0 && price}
+                    {price > 0 && "$"+price}
                 </div>
                 <div className="flex flex-col">
                     <h1 className="text-xl font-bold line-clamp-1">{title}</h1>

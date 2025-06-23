@@ -46,6 +46,22 @@ const RequestMade = () => {
     }
   }
 
+
+
+  const markAsCompleteRequest = async (_id: string) => {
+    try {
+      const response = await axios.post(`${BACKEND_URI}/request/${_id}/complete`, {}, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      })
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     allRequestMade()
   }, [])
