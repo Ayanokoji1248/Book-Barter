@@ -14,6 +14,7 @@ export type BookProps = {
     status: "pending" | "accepted" | "rejected";
     onStatusChange: (id: string, newStatus: "accepted" | "rejected") => void;
     onDelete: (id: string) => void;
+    onMark: (id: string) => void
 };
 
 const RequestRecievedCard = ({
@@ -27,6 +28,7 @@ const RequestRecievedCard = ({
     status,
     onStatusChange,
     onDelete,
+    onMark,
 }: BookProps) => {
     const acceptRequest = async (_id: string) => {
         try {
@@ -67,6 +69,20 @@ const RequestRecievedCard = ({
         }
     };
 
+    const markAsCompleteRequest = async (_id: string) => {
+        try {
+            await axios.post(`${BACKEND_URI}/request/${_id}/complete`, {}, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            })
+            onMark(_id)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="rounded-xl overflow-auto shadow-2xl w-full md:w-96">
             <div id="left" className="w-full sm:h-64 md:h-72 overflow-hidden">
@@ -100,7 +116,7 @@ const RequestRecievedCard = ({
 
                 <div className="flex flex-col gap-3 p-3">
                     {status === "accepted" ? (
-                        <Button variant="success" text="Mark as Complete" widthFull={true} />
+                        <Button variant="success" text="Mark as Complete" onClick={() => markAsCompleteRequest(_id)} widthFull={true} />
                     ) : status === "rejected" ? (
                         <Button
                             variant="danger"

@@ -53,6 +53,10 @@ const RequestReceived = () => {
         setAllRequests((prev) => prev.filter((req) => req._id !== id));
     };
 
+    const requestComplete = (id: string) => {
+        setAllRequests((prev) => prev.filter((req) => req._id !== id))
+    }
+
     return (
         <div className="pb-5 flex flex-wrap gap-8">
             {allRequests.length > 0 ? (
@@ -74,6 +78,7 @@ const RequestReceived = () => {
                         message={req.message}
                         onStatusChange={updateRequestStatus}
                         onDelete={deleteRequestFromUI}
+                        onMark={requestComplete}
                     />
                 ))
             ) : (
